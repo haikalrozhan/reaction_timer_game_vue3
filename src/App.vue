@@ -1,10 +1,29 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+ <h1>Reaction Timer Game</h1>
+ <button @click="start" :disabled="isPlaying">Play</button>
+ <Block v-if="isPlaying" :delay="delay"/>
+ 
 </template>
+
+<script>
+import Block from './components/Block.vue'
+export default{
+  components: {Block},
+  data(){
+    return{
+      isPlaying: false,
+      delay: null
+    }
+  },
+  methods: {
+    start(){
+      this.delay = 2000 + Math.random() * 5000
+      this.isPlaying = true
+      console.log(this.delay)
+    }
+  }
+}
+</script>
 
 <style>
 #app {
@@ -12,19 +31,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #333;
 }
 
-nav {
-  padding: 30px;
-}
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
 
-nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
