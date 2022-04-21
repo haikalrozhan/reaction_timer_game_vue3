@@ -2,14 +2,15 @@
  <h1>Reaction Timer Game</h1>
  <button @click="start" :disabled="isPlaying">Play</button>
  <Block v-if="isPlaying" :delay="delay" @end="endGame"/>
- <p v-if="showResults">Reaction Time: {{score}} ms</p>
+ <Results v-if="showResults" :score="score"/>
  
 </template>
 
 <script>
 import Block from './components/Block.vue'
+import Results from './components/Results.vue'
 export default{
-  components: {Block},
+  components: {Block, Results},
   data(){
     return{
       isPlaying: false,
